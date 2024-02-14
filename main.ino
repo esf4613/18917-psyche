@@ -30,23 +30,36 @@ void loop() {
   motor = Serial.parseInt();
 
   if(motor == 1){ // Horizontal Motor
-      Serial.println(F("Horizontal Motor selected."))
-      Serial.println(F("Choose Direction:\n1 - Forward\n2 - Backward\nChoice: "));
-      direction = Serial.parseInt();
-      if (direction == 1){
-        Serial.println(F("Forward selected. Driving..."));
-        h_clockwise();
-      }
-      else if (Direction == 2){
-        Serial.println(F("Backward selected. Driving..."));
-        h_counterclockwise();
-      }
-      else{
-        Serial.println(F("Incorrect option entered. Please try again.\n"));
-      }
+		Serial.println(F("Horizontal Motor selected."))
+		Serial.println(F("Choose Direction:\n1 - Forward\n2 - Backward\nChoice: "));
+		direction = Serial.parseInt();
+		if (direction == 1){
+			Serial.println(F("Forward selected. Driving..."));
+			h_clockwise();
+		}
+		else if (Direction == 2){
+			Serial.println(F("Backward selected. Driving..."));
+			h_counterclockwise();
+		}
+		else{
+			Serial.println(F("Incorrect option entered. Please try again.\n"));
+		}
 
   } else if(motor == 2){ // Vertical Motor
-
+		Serial.println(F("Vertical Motor selected."))
+		Serial.println(F("Choose Direction:\n1 - Downward\n2 - Upward\nChoice: "));
+		direction = Serial.parseInt();
+		if (direction == 1){
+			Serial.println(F("Downward selected. Driving..."));
+			h_clockwise();
+		}
+		else if (Direction == 2){
+			Serial.println(F("Upward selected. Driving..."));
+			h_counterclockwise();
+		}
+		else{
+			Serial.println(F("Incorrect option entered. Please try again.\n"));
+		}
 
   } else if(motor == 3){ // Claw
   
