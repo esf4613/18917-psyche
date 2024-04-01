@@ -16,6 +16,11 @@ const int dirYPin = 6; // Y.DIR
 const int stepZPin = 4; //Z.STEP
 const int dirZPin = 7; // Z.DIR
 
+// SparkFun VCNL4040 Proximity Sensors
+const int proxMin = 0; // Nothing is detected
+const int proxMax = 65535; // Max value for detecting an object
+const int proxThresh = 200; // Value for sensor proximity
+
 const int x_steps=7300; // Horizontal stepper steps (200 per revolution)
 const int y_steps=10500; // Horizontal stepper steps (200 per revolution) [10,500 is highest value (max depth)]
 const int z_steps=105; // Horizontal stepper steps (200 per revolution)
@@ -203,6 +208,10 @@ void h_v_abduction(){
 
   // Move the horizotal and vertical motors together to pick up a sample
  	for (int i = 0; i < y_steps; i++) {
+      unsigned int proxValue = proximitySensor.getProximity(); // VCNL4040 Proximity Sensor
+      if(proxValue > proxThresh) {
+        break;
+      }
       if(i < x_steps){
  			  digitalWrite(stepXPin, HIGH); // Horizontal motor steps will stop first
       }
@@ -224,6 +233,10 @@ void h_v_adduction(){
 
   // Move the horizotal and vertical motors together to retrieve a sample
  	for (int i = 0; i < y_steps; i++) {
+      unsigned int proxValue = proximitySensor.getProximity(); // VCNL4040 Proximity Sensor
+      if(proxValue > proxThresh) {
+        break;
+      }
       if(i < x_steps){
  			  digitalWrite(stepXPin, HIGH); // Horizontal motor steps will stop first
       }
