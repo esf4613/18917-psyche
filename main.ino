@@ -6,7 +6,8 @@ Servo servo;
 const byte servoPin = A3; // coolant enable
 byte pos = 0;
 const int servoClosed = 0; // Servo angle closed
-const int servoOpen = 90; // Servo angle open
+const int servoOpenCollection = 90; // Servo angle open at the collection site (larger for more sample)
+const int servoOpenFunnel = 60; // Servo angle open at the funnel (smaller for less spillage)
 
 // Stepper variables
 const int enPin=8;
@@ -103,7 +104,7 @@ void loop() {
     direction = Serial.parseInt();
     if (direction == 1){
       Serial.println(F("Open selected. Driving..."));
-      servo.write(servoOpen);
+      servo.write(servoOpenCollection);
     }
     else if (direction == 2){
       Serial.println(F("Closed selected. Driving..."));
@@ -129,14 +130,14 @@ void loop() {
       Serial.println(F("Incorrect option entered. Please try again.\n"));
     }
   }
-  else if(motor == 5){
+  else if(motor == 5){ // Demo program
     Serial.println(F("Demo Program selected."));
-    servo.write(servoOpen); // Open the claw
+    servo.write(servoOpenCollection); // Open the claw
     h_v_abduction(); // Move claw over and down to the soil
     servo.write(servoClosed); // Close the claw
     delay(1000); // Wait 1 second while collecting sample
     h_v_adduction(); // Move claw back and up to the collection funnel
-    servo.write(servoOpen); // Deposit the sample
+    servo.write(servoOpenFunnel); // Deposit the sample
     delay(1000); // Wait 1 second while depositing sample
     xy_zero_out(); // Return x and y steppers to base (zeroed-out)
     z_clockwise(); // Rotate to next sample
