@@ -25,7 +25,7 @@ const int proxThresh = 2; // Value for sensor proximity
 
 const int x_steps=7300; // Horizontal stepper steps (200 per revolution)
 const int x_steps_to_funnel=1400; // The number of steps from the base of the horiztonal motor to funnel
-const int y_steps=9700; // Horizontal stepper steps (200 per revolution) [10,500 is highest value (max depth)]
+const int y_steps=9700; // Horizontal stepper steps (200 per revolution) [10,500 is highest value (max depth)] (use 9700 for box depth)
 const int y_steps_to_funnel=2000; // The number of steps from the base of the vertical motor to funnel
 const int z_steps=108; // Horizontal stepper steps (200 per revolution)
 
@@ -62,6 +62,7 @@ void setup() {
 void loop() {
   Serial.println(F("Motor Control Menu:\n1 - Horizontal\n2 - Vertical\n3 - Claw\n4 - Collection Cylinder\n5 - Demo Program\nChoice: "));
   char motor = Serial.parseInt();
+  //char motor = 5;
   int direction;
   
   if(motor == 1){ // Horizontal Motor
@@ -245,23 +246,6 @@ void h_v_abduction(){
 
   // Move the horizotal and vertical motors together to pick up a sample
  	for (int i = 0; i < y_steps; i++) {
-    /*
-    // Read the proximity value every 500 ms
-    if (i*(int)((double)x_microsBtwnSteps/1000.0) % 500 == 0){
-    Serial.print("Proximity:"); Serial.println(vcnl4040.getProximity());
-    }
-    
-    if (i > y_steps-2000){
-      unsigned int proxValue = vcnl4040.getProximity(); // VCNL4040 Proximity Sensor
-      Serial.print("Proximity:"); Serial.println(vcnl4040.getProximity());
-      if(proxValue >= proxThresh && proxValue < proxMax) {
-        Serial.println("Proximity value: ");
-        Serial.println(proxValue);
-        break;
-      }
-    }
-    */
-
     if(i < x_steps){
       digitalWrite(stepXPin, HIGH); // Horizontal motor steps will stop first
     }
