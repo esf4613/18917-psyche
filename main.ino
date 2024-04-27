@@ -25,9 +25,9 @@ const int proxMax = 65535; // Max value for detecting an object
 const int proxThresh = 2; // Value for sensor proximity
 
 const int x_steps=7300; // Horizontal stepper steps (200 per revolution)
-const int x_steps_to_funnel=1400; // The number of steps from the base of the horiztonal motor to funnel
+const int x_steps_to_funnel=1300; // The number of steps from the base of the horiztonal motor to funnel
 const int y_steps=9700; // Horizontal stepper steps (200 per revolution) [10,500 is highest value (max depth)] (use 9700 for box depth)
-const int y_steps_to_funnel=2000; // The number of steps from the base of the vertical motor to funnel
+const int y_steps_to_funnel=2300; // The number of steps from the base of the vertical motor to funnel
 const int z_steps=108; // Horizontal stepper steps (200 per revolution)
 
 // Milliseconds between each step, higher value means a stronger drive, but slower
